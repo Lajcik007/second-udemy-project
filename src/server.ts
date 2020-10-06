@@ -48,7 +48,7 @@ import * as fs from "fs";
     res.sendFile(filteredPath);
 
     res.on('finish', async () => {
-      await deleteLocalFiles([filteredPath]);
+      deleteLocalFiles([filteredPath]);
     });
   });
   
