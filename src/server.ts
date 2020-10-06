@@ -1,7 +1,8 @@
 import express from 'express';
 import bodyParser from 'body-parser';
 import { filterImageFromURL, deleteLocalFiles, stringIsAValidUrl } from './util/util';
-import * as fs from "fs";
+import { Request, Response } from 'express'
+
 
 (async () => {
 
@@ -32,8 +33,8 @@ import * as fs from "fs";
 
   //! END @TODO1
 
-  app.get('/filteredimage', async (req, res) => {
-    const { image_url } = req.query
+  app.get('/filteredimage', async (req: Request, res: Response) => {
+    const image_url: string = req.query.image_url
 
     if (!image_url) {
       return res.status(400).send({ message: 'Query param image_url is necessary' });
@@ -54,7 +55,7 @@ import * as fs from "fs";
   
   // Root Endpoint
   // Displays a simple message to the user
-  app.get( "/", async ( req, res ) => {
+  app.get( "/", async ( req: Request, res: Response ) => {
     res.send("try GET /filteredimage?image_url={{}}")
   });
   
